@@ -27,4 +27,4 @@ const createBook = (bookObj) => new Promise((resolve, reject) => {
 // UPDATE BOOK
 // SEARCH BOOKS
 
-export default getBooks;
+export { getBooks, createBook };

@@ -1,4 +1,6 @@
+import { showBooks } from '../components/books';
 import addBookForm from '../components/forms/addBookForm';
+import { createBook } from '../helpers/data/bookData';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -25,6 +27,8 @@ const domEvents = () => {
         sale: document.querySelector('#sale').value,
         author_id: document.querySelector('#author_id').value
       };
+
+      createBook(bookObject).then((booksArray) => showBooks(booksArray));
     }
 
     // CLICK EVENT FOR SHOWING MODAL FORM FOR ADDING A BOOK
