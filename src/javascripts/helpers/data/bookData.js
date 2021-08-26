@@ -13,6 +13,17 @@ const getBooks = () => new Promise((resolve, reject) => {
 
 // DELETE BOOK
 // CREATE BOOK
+const createBook = (bookObj) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/books.json`)
+    .then((response) => {
+      const body = { firebaseKey: response.data.name };
+
+      axios.patch(`${dbUrl}/books/${response.data.name}.json`, body)
+        .then(() => {
+          getBooks().then((booksArray) => resolve(booksArray));
+        });
+    }).catch((errror) => reject(error));
+}
 // UPDATE BOOK
 // SEARCH BOOKS
 
