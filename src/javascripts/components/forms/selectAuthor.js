@@ -1,3 +1,4 @@
+// import { getAuthors } from '../../helpers/data/authorData';
 import { getAuthors } from '../../helpers/data/authorData';
 
 const selectAuthor = () => {

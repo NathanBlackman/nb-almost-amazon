@@ -27,8 +27,6 @@ const addBookForm = () => {
     </form>`;
 
   selectAuthor();
-
-  document.querySelector('#submit-book-form').addEventListener('submit', createBookSubmitEvent);
 };
 
 export default addBookForm;

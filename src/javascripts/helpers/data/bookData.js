@@ -13,14 +13,16 @@ const getBooks = () => new Promise((resolve, reject) => {
 
 // DELETE BOOK
 // CREATE BOOK
-const createBook = () => new Promise((resolve, reject) => {
-  axios.post(`${dbUrl}/books.json`, newBookData)
+const createBook = (bookObj) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/books.json`, bookObj)
     .then((response) => {
-      const firebaseKey = response.data.name;
-      axios.patch(`${dbUrl}/books/${firebaseKey}`, firebaseKey);
-      .then(() => getBooks().then(allBooks) => resolve(allBooks));
-    });
-    .catch((errors) => reject(errors))
+      const body = { firebaseKey: response.data.name };
+
+      axios.patch(`${dbUrl}/books/${response.data.name}.json`, body)
+        .then(() => {
+          getBooks().then((booksArray) => resolve(booksArray));
+        });
+    }).catch((error) => reject(error));
 });
 // UPDATE BOOK
 // SEARCH BOOKS
