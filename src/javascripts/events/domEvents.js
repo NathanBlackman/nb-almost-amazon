@@ -1,6 +1,6 @@
 import { showBooks } from '../components/books';
 import addBookForm from '../components/forms/addBookForm';
-import { createBook } from '../helpers/data/bookData';
+import { createBook, deleteBook, getSingleBook } from '../helpers/data/bookData';
 import addAuthorForm from '../components/forms/addAuthorForm';
 import { showAuthors } from '../components/authors';
 import { createAuthor } from '../helpers/data/authorData';
@@ -11,6 +11,9 @@ const domEvents = () => {
     if (e.target.id.includes('delete-book')) {
       if (window.confirm('Want to delete?')) {
         console.warn('CLICKED DELETE BOOK', e.target.id);
+        const [, id] = e.target.id.split('--');
+
+        deleteBook(id).then(showBooks);
       }
     }
 
@@ -37,9 +40,11 @@ const domEvents = () => {
     // CLICK EVENT FOR SHOWING MODAL FORM FOR ADDING A BOOK
     if (e.target.id.includes('edit-book-btn')) {
       console.warn('CLICKED EDIT BOOK', e.target.id);
+      const [, id] = e.target.id.split('--');
+      getSingleBook(id).then((bookObj) => addBookForm(bookObj));
     }
 
-    // CLICK EVENT FOR EDITING A BOOK
+    // CLICK EVENT FOR EDITING/UPDATING A BOOK
     if (e.target.id.includes('update-book')) {
       console.warn('CLICKED EDIT BOOK', e.target.id);
     }
