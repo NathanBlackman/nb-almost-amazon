@@ -24,7 +24,7 @@ const navBar = () => {
               <a class="nav-link" href="#" id="sale-books">Books on Sale</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="authors">Authors</a>
+              <a class="nav-link" href="#" id="all-authors">Authors</a>
             </li>
             </li>
             <li class="nav-item">

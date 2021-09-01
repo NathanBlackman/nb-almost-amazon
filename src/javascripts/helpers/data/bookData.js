@@ -39,6 +39,12 @@ const createBook = (bookObj) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 // UPDATE BOOK
+const updateBook = (bookObj) => new Promise((resolve, reject) => {
+  axios.patch(`${dbUrl}/books/${bookObj.firebaseKey}.json`, bookObj)
+    .then(() => getBooks().then(resolve))
+    .catch(reject);
+});
+
 // SEARCH BOOKS
 
 // FILTER BOOKS ON SALE
@@ -53,5 +59,6 @@ export {
   createBook,
   booksOnSale,
   deleteBook,
-  getSingleBook
+  getSingleBook,
+  updateBook
 };
